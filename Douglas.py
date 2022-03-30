@@ -1,1 +1,1 @@
-print("eai jhosef matheus, jovem desbravador!")
+print("eai jhosef matheus, jovem escoteiro!")
