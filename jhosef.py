@@ -1,1 +1,6 @@
-print("Meu nome é Jhosef!")
+a = 1
+b = 2
+
+c = a + b
+
+print(c)
