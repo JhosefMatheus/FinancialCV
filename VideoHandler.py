@@ -1,7 +1,5 @@
 import cv2
 import numpy as np
-import numpy as np
-import cv2
 
 class VideoHandler:
 
@@ -21,13 +19,13 @@ class VideoHandler:
 
             except Exception as e:
                 pass
+
+            print(c)
+            
         frames = np.array(np.split(frames, c))
         frames = np.delete(frames, 0,0)
 
-        return frames  
-
-
-
+        return frames
 
     
     def get_coordinates(self, contours):
