@@ -58,3 +58,26 @@ class VideoHandler:
             new_array = new_array.append(new_array, new_frame)
         
         return new_array
+
+    
+    def get_text_image(self,new_array):
+        reader = ocr.reader(["en"],gpu=False)
+        result = reader.readtext(new_array)
+
+        return result[0][1]
+    
+
+    def convert_text(self,text):
+        text = text.replace(".","")
+        text = text.replace(",",".")
+
+        text_number = float(text)
+
+        return text_number 
+
+
+    def get_step(self,array_prices, i):
+        step = array_prices[i] - array_prices[i - 1]
+
+        return step 
+
