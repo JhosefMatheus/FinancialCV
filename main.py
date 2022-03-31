@@ -10,3 +10,4 @@ frames = video_handler.get_frames()
 first_frame = frames[0]
 
 cv2.imshow("Frame", first_frame)
+cv2.waitKey(0)

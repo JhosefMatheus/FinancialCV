@@ -20,8 +20,6 @@ class VideoHandler:
             except Exception as e:
                 pass
 
-            print(c)
-            
         frames = np.array(np.split(frames, c))
         frames = np.delete(frames, 0,0)
 
