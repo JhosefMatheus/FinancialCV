@@ -1,5 +1,6 @@
 from VideoHandler import VideoHandler
 import cv2
+import easyocr
 
 video_path = "SuperDOM Simples.mkv"
 
