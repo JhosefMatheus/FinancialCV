@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import easyocr
+# import easyocr as ocr
 
 class VideoHandler:
 
@@ -38,7 +38,7 @@ class VideoHandler:
         lower_bound = np.array([22, 93, 0])
         upper_bound = np.array([45, 255, 255])
 
-        new_array = np.array([])
+        new_array = []
 
         for frame in frames:
             blur_frame = cv2.blur(frame, (7, 7))
@@ -54,16 +54,16 @@ class VideoHandler:
 
             new_frame = frame[y:y+h, x:x+w]
 
-            new_array = new_array.append(new_array, new_frame)
+            new_array.append(new_frame)
         
         return new_array
 
     
-    def get_text_image(self,new_array):
-        reader = ocr.reader(["en"],gpu=False)
-        result = reader.readtext(new_array)
+    # def get_text_image(self,new_array):
+    #     reader = ocr.reader(["en"],gpu=False)
+    #     result = reader.readtext(new_array)
 
-        return result[0][1]
+    #     return result[0][1]
     
 
     def convert_text(self,text):
