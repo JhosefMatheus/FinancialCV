@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-# import easyocr as ocr
+import easyocr as ocr
 
 class VideoHandler:
 
@@ -27,7 +27,7 @@ class VideoHandler:
         return frames
 
     
-    def get_coordinates(self, contours):
+    def __get_coordinates(self, contours):
         for contour in contours:
             x, y, w, h = cv2.boundingRect(contour)
         
@@ -48,7 +48,7 @@ class VideoHandler:
 
             cnts, __ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-            coordinates = self.get_coordinates(cnts)
+            coordinates = self.__get_coordinates(cnts)
 
             x, y, w, h = coordinates
 
@@ -59,24 +59,32 @@ class VideoHandler:
         return new_array
 
     
-    # def get_text_image(self,new_array):
-    #     reader = ocr.reader(["en"],gpu=False)
-    #     result = reader.readtext(new_array)
+    def __get_text_image(self, image):
+        reader = ocr.Reader(["en"], gpu=False)
+        result = reader.readtext(image)
 
-    #     return result[0][1]
-    
+        text = result[0][1]
+        
+        return text
 
-    def convert_text(self,text):
-        text = text.replace(".","")
-        text = text.replace(",",".")
+
+    def __convert_text(self, text):
+        text = text.replace(".", "")
+        text = text.replace(",", "")
 
         text_number = float(text)
 
-        return text_number 
+        return text_number
 
 
-    def get_step(self,array_prices, i):
-        step = array_prices[i] - array_prices[i - 1]
+    def get_prices(self, images_array):
+        prices = np.array([])
 
-        return step 
+        for image in images_array:
+            text = self.__get_text_image(image)
+            price = self.__convert_text(text)
+
+            prices = np.append(prices, price)
+        
+        return prices
 
