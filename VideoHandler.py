@@ -60,7 +60,7 @@ class VideoHandler:
 
     
     def __get_text_image(self, image):
-        reader = ocr.Reader(["en"], gpu=False)
+        reader = ocr.Reader(["en"], gpu=True)
         result = reader.readtext(image)
 
         text = result[0][1]
